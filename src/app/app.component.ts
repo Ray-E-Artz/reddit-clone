@@ -1,5 +1,19 @@
 import { Component, Input } from '@angular/core';
 
+/* ------------- Article Class --------------*/
+class Article {
+
+  constructor(
+    private title: string,
+    private description: string
+  ){}
+
+  date(): Date {
+    return new Date();
+  }
+}
+
+/*  --------- SidebarComponent ---------- */
 @Component({
   selector: 'app-sidebar',
   template: `  
@@ -10,18 +24,22 @@ import { Component, Input } from '@angular/core';
 })
 export class SidebarComponent {}
 
+/*  --------- ArticleComponent ---------- */
 @Component({
   selector: 'app-article',
   template: `
     <div>
-      <h2> {{ article.title }} </h2>
+    <h2>{{ article.title }}</h2>
+    <p>{{ article.date() }}</p>
 </div>
+
   `
 })
 export class ArticleComponent {
   @Input() article: Object;
 }
 
+/*  --------- AppComponent ---------- */
 @Component({
   selector: 'app-root',
   template: `
@@ -29,6 +47,7 @@ export class ArticleComponent {
       <app-sidebar></app-sidebar>
       <div id="content">
         <app-article
+          *ngFor="let article of articles"
           [article]="article">
         </app-article>    
       </div>
@@ -36,12 +55,20 @@ export class ArticleComponent {
   `,
 })
 export class AppComponent {
-  article: Object;
+  articles: Article[];
   constructor(){
-    this.article = {
-      title: 'The Angular 2 screencast',
-      description: 'The easiest way to learn Angular 2 is with' +
-      ' Fullstack.io!'
-    };
+    this.articles= [
+      new Article(
+        'The Angular 2 screencast',
+        'The easiest way to learn Angular 2 is with' +
+          ' Fullstack.io!'
+      ),
+      new Article(
+        'Fullstack React',
+        'Want to learn React too?'
+      )
+    ];
   }
 }
+
+
