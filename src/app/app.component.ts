@@ -45,7 +45,7 @@ export class SidebarComponent {}
 })
 export class ArticleComponent {
   @Input() article: Object;
-}
+ }
 
 /*-------------- AppComponent -------------*/
 @Component({
