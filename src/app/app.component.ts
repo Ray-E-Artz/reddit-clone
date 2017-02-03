@@ -17,6 +17,7 @@ export class SidebarComponent {}
   template: `
     <div class="image">
     <img src="https://placekitten.com/g/400/300"/>
+    </div>
     <div class="content">
       <div class="header">
         {{ article.title }}
@@ -40,7 +41,6 @@ export class SidebarComponent {}
         </a>
       </div>
     </div>
-  </div>
 `
 })
 export class ArticleComponent {
